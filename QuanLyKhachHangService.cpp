@@ -179,37 +179,3 @@ double QuanLyKhachHangService::tinhTyLeKhachHangVIP() const
         return 0;
     return (double)demSoKhachHangVIP() / danhSachKhachHang.get_size() * 100;
 }
-
-// void QuanLyKhachHangService::thongKeKhachHangTheoDiem() const
-// {
-//     cout << "\n=== THONG KE KHACH HANG THEO DIEM ===" << endl;
-//     int countBronze = 0, countSilver = 0, countGold = 0, countVIP = 0;
-
-//     for (size_t i = 0; i < danhSachKhachHang.get_size(); i++)
-//     {
-//         int diem = danhSachKhachHang[i].getDiem();
-//         if (diem >= 200)
-//             countVIP++;
-//         else if (diem >= 100)
-//             countGold++;
-//         else if (diem >= 50)
-//             countSilver++;
-//         else
-//             countBronze++;
-//     }
-
-//     cout << "VIP (200+ diem): " << countVIP << " khach" << endl;
-//     cout << "Gold (100-199 diem): " << countGold << " khach" << endl;
-//     cout << "Silver (50-99 diem): " << countSilver << " khach" << endl;
-//     cout << "Bronze (0-49 diem): " << countBronze << " khach" << endl;
-
-//     int total = danhSachKhachHang.get_size();
-//     if (total > 0)
-//     {
-//         cout << "\nTY LE:" << endl;
-//         cout << "VIP: " << (countVIP * 100 / total) << "%" << endl;
-//         cout << "Gold: " << (countGold * 100 / total) << "%" << endl;
-//         cout << "Silver: " << (countSilver * 100 / total) << "%" << endl;
-//         cout << "Bronze: " << (countBronze * 100 / total) << "%" << endl;
-//     }
-// }

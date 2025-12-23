@@ -12,15 +12,10 @@ AuthenticationService::AuthenticationService() : currentUser(nullptr)
 
 void AuthenticationService::khoiTaoTaiKhoanMacDinh()
 {
-    // Admin mặc định
     User admin("admin", "admin123", VaiTro::ADMIN, "Administrator");
     danhSachUser.push_back(admin);
-
-    // Nhân viên mặc định
     User nv1("nhanvien1", "nv123", VaiTro::NHAN_VIEN, "Nguyen Van A");
     danhSachUser.push_back(nv1);
-
-    // Khách hàng mặc định
     User kh1("khach1", "kh123", VaiTro::KHACH_HANG, "Tran Thi B");
     danhSachUser.push_back(kh1);
 }
@@ -34,11 +29,11 @@ bool AuthenticationService::dangNhap(const string &username, const string &passw
             if (danhSachUser[i].xacThucMatKhau(password))
             {
                 currentUser = &danhSachUser[i];
-                return true; // Thành công
+                return true;
             }
             else
             {
-                return false; // Sai mật khẩu
+                return false; // sai mật khẩu
             }
         }
     }
@@ -84,8 +79,6 @@ bool AuthenticationService::themUser(const string &username, const string &passw
     {
         return false;
     }
-
-    // Kiểm tra username đã tồn tại
     for (size_t i = 0; i < danhSachUser.get_size(); i++)
     {
         if (danhSachUser[i].getUsername() == username)

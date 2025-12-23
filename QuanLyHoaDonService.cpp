@@ -171,13 +171,6 @@ double QuanLyHoaDonService::tinhTongDoanhThu() const
     return tong;
 }
 
-// void QuanLyHoaDonService::baoCaoDoanhThuTheoThang(const string &thangNam) const
-// {
-//     cout << "\n=== BAO CAO DOANH THU THANG " << thangNam << " ===" << endl;
-//     double doanhThu = tinhTongDoanhThuTheoThang(thangNam);
-//     cout << "Tong doanh thu: " << fixed << setprecision(0) << doanhThu << " VND" << endl;
-// }
-
 bool QuanLyHoaDonService::kiemTraIdHoaDonTonTai(const string &id) const
 {
     for (size_t i = 0; i < danhSachHoaDon.get_size(); i++)
