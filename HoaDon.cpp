@@ -7,14 +7,14 @@ using namespace std;
 HoaDon::HoaDon()
     : idHoaDon(""), idKhachHang(""), idNhanVien(""), idDatSan(""),
       ngayLap(""), trangThai(TRANG_THAI_CHUA_THANH_TOAN),
-      quanLyChiTiet(nullptr), tongTien(0), tienSan(0) // <--- Init tienSan
+      quanLyChiTiet(nullptr), tongTien(0), tienSan(0)
 {
 }
 
 HoaDon::HoaDon(string id, string idKhach, string idNV, string idDS,
                string ngay, QuanLyChiTietHoaDon *qlct, string tt)
     : idHoaDon(id), idKhachHang(idKhach), idNhanVien(idNV), idDatSan(idDS),
-      ngayLap(ngay), quanLyChiTiet(qlct), tongTien(0), tienSan(0) // <--- Init tienSan
+      ngayLap(ngay), quanLyChiTiet(qlct), tongTien(0), tienSan(0)
 {
     trangThai = chuanHoaTrangThai(tt);
 }

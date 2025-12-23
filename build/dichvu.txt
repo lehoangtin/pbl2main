@@ -1,4 +1,4 @@
-AnUong,DV001,Nuoc Suoi,10000,Chai,98,Con hang
+AnUong,DV001,Nuoc Suoi,10000,Chai,94,Con hang
 AnUong,DV002,Sting Dau,15000,Chai,50,Con hang
 ThietBi,DV003,Giay Cau Long,30000,Doi,20,Con hang
 AnUong,DV004,My Tom,20000,To,10,Con hang

@@ -1,5 +1,6 @@
-KH001,Pham Van VIP,0912345678,vip@gmail.com,102,01/01/2023
+KH001,Pham Van VIP,0912345678,vip@gmail.com,104,01/01/2023
 KH002,Le Thi Moi,0987654321,moi@gmail.com,7,20/11/2024
 KH003,Nguyen Thi C ,0905456456,khC@gmail.com,3,25/11/2025
 KH004,Hoang Van D,0912123123,d@gmail.com,0,20/01/2024
 KH005,Ho Van M,0905000000,M@gmail.com,0,03/12/2025
+KH006,Le Hoang Tin ,0935150883,tin@gmail.com,0,20/11/2025
