@@ -887,10 +887,10 @@ ftxui::Component UIManager::createSanManager()
     auto btn_toggle = ftxui::Button("➕ Form", [this]
                                     { show_san_input = !show_san_input; });
 
-    auto btn_loc_tot = ftxui::Button("⚡ Lọc: " + std::string(isFiltering ? "BẬT" : "TẮT"), [this]
+    auto btn_loc_tot = ftxui::Button("⚡ Lọc", [this]
                                      { 
-        isFiltering = !isFiltering; 
-        san_tim_id = ""; });
+    isFiltering = !isFiltering; 
+    san_tim_id = ""; });
 
     auto container = ftxui::Container::Vertical({radio, in_id, in_inf1, in_inf2, in_inf3, in_inf4, in_del, in_tim_id, btn_add, btn_edit, btn_load, btn_baotri, btn_del, btn_tim, btn_toggle, btn_loc_tot});
 

@@ -31,7 +31,7 @@ set(SOURCES
     HoaDon.cpp
     ChiTietHoaDon.cpp
     # Services
-    AuthenticationService.cpp       # <--- QUAN TRỌNG: BẮT BUỘC PHẢI CÓ DÒNG NÀY
+    AuthenticationService.cpp       
     QuanLyNhanVienService.cpp
     QuanLyKhachHangService.cpp
     QuanLySanService.cpp
