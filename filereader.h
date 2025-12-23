@@ -24,7 +24,6 @@
 
 using namespace std;
 
-// Hàm hỗ trợ tính số giờ thuê (Static để dùng nội bộ)
 static int tinhSoGioThue(const string &gioBatDau, const string &gioKetThuc)
 {
     try
@@ -41,33 +40,28 @@ static int tinhSoGioThue(const string &gioBatDau, const string &gioKetThuc)
         int tongPhutBD = gioBD * 60 + phutBD;
         int tongPhutKT = gioKT * 60 + phutKT;
 
-        // 23:00 đến 01:00
         if (tongPhutKT <= tongPhutBD)
         {
             tongPhutKT += 24 * 60;
         }
-
         int soPhut = tongPhutKT - tongPhutBD;
         int soGio = soPhut / 60;
-
-        // Tính tròn giờ nếu có phút lẻ (ví dụ 1h15p -> 2h)
         if (soPhut % 60 > 0)
         {
             soGio++;
         }
 
-        return soGio > 0 ? soGio : 1; // Tối thiểu 1 giờ
+        return soGio > 0 ? soGio : 1;
     }
     catch (...)
     {
-        return 1; // Mặc định 1 giờ nếu lỗi
+        return 1;
     }
 }
 
 class FileReader
 {
 public:
-    // 1. ĐỌC KHÁCH HÀNG
     static MyVector<KhachHang> docKhachHang(const string &filename)
     {
         MyVector<KhachHang> danhSach;
@@ -112,7 +106,6 @@ public:
         return danhSach;
     }
 
-    // 2. ĐỌC NHÂN VIÊN
     static MyVector<NhanVien> docNhanVien(const string &filename)
     {
         MyVector<NhanVien> danhSach;
@@ -154,8 +147,6 @@ public:
         file.close();
         return danhSach;
     }
-
-    // 3. ĐỌC SÂN CẦU LÔNG
     static MyVector<shared_ptr<SanCauLong>> docSan(const string &filename)
     {
         MyVector<shared_ptr<SanCauLong>> danhSach;
@@ -176,7 +167,7 @@ public:
             getline(ss, loaiSan, ',');
             getline(ss, maSan, ',');
             getline(ss, tinhTrang, ',');
-            getline(ss, thongTin1, ','); // NgoaiTroi: ViTri, TrongNha: LamMat, VIP: DichVu
+            getline(ss, thongTin1, ',');
             getline(ss, thongTin2, ','); // NgoaiTroi: DienTich, TrongNha: DienTich, VIP: ChatLieu
 
             if (maSan.empty())
@@ -211,9 +202,6 @@ public:
         file.close();
         return danhSach;
     }
-
-    // 4. ĐỌC DỊCH VỤ
-    // 4. ĐỌC DỊCH VỤ - PHIÊN BẢN GỌN (Bỏ Info 1)
     static MyVector<shared_ptr<DichVu>> docDichVu(const string &filename)
     {
         MyVector<shared_ptr<DichVu>> danhSach;
@@ -234,7 +222,6 @@ public:
             string loaiDV, id, tenDV, giaStr, donViTinh, soLuongStr;
             string trangThai = "";
 
-            // 1. Đọc 6 trường cơ bản
             getline(ss, loaiDV, ',');
             getline(ss, id, ',');
             getline(ss, tenDV, ',');
@@ -244,8 +231,6 @@ public:
 
             if (id.empty())
                 continue;
-
-            // 2. Đọc trường cuối cùng (Trạng thái)
             if (ss.good())
                 getline(ss, trangThai);
 
@@ -253,8 +238,6 @@ public:
             {
                 double gia = stod(giaStr);
                 int soLuong = stoi(soLuongStr);
-
-                // Tự động cập nhật trạng thái nếu số lượng = 0
                 if (soLuong == 0)
                     trangThai = "Het hang";
                 else if (trangThai.empty())
@@ -262,14 +245,10 @@ public:
 
                 if (loaiDV == "AnUong")
                 {
-                    // Info1 (Loại ẩm thực) = "" (Rỗng)
-                    // Info2 = trangThai
                     danhSach.push_back(make_shared<DichVuAnUong>(id, tenDV, gia, donViTinh, soLuong, "", trangThai));
                 }
                 else if (loaiDV == "ThietBi")
                 {
-                    // Info1 (Tình trạng) = "Tot" (Mặc định)
-                    // Info2 = trangThai
                     danhSach.push_back(make_shared<DichVuThietBi>(id, tenDV, gia, donViTinh, soLuong, "Tot", trangThai));
                 }
             }
@@ -281,8 +260,6 @@ public:
         file.close();
         return danhSach;
     }
-
-    // 5. ĐỌC ĐẶT SÂN
     static MyVector<DatSan> docDatSan(const string &filename,
                                       MyVector<shared_ptr<SanCauLong>> &sanList,
                                       MyVector<KhachHang> &khachHangList,
@@ -340,7 +317,6 @@ public:
         return danhSach;
     }
 
-    // 6. ĐỌC HÓA ĐƠN
     static MyVector<HoaDon> docHoaDon(const string &filename,
                                       MyVector<KhachHang> &khachHangList,
                                       MyVector<NhanVien> &nhanVienList,
@@ -389,10 +365,7 @@ public:
                 }
             }
 
-            // 4.set tiền sân riêng biệt
             hoaDon.setTienSan(tienSan);
-
-            // 5. Tính toán tổng thể (tiền sân + tiền dịch vụ từ ChiTietHoaDon)
             hoaDon.tinhTongTien();
 
             danhSach.push_back(hoaDon);

@@ -21,7 +21,6 @@ using namespace std;
 class FileWriter
 {
 public:
-    // Ghi file KhachHang
     static bool ghiKhachHang(const string &filename, const MyVector<KhachHang> &danhSach)
     {
         ofstream file(filename);
@@ -47,7 +46,6 @@ public:
         return true;
     }
 
-    // Ghi file NhanVien
     static bool ghiNhanVien(const string &filename, const MyVector<NhanVien> &danhSach)
     {
         ofstream file(filename);
@@ -73,8 +71,6 @@ public:
         cout << "Da ghi " << danhSach.get_size() << " nhan vien vao file " << filename << endl;
         return true;
     }
-
-    // Ghi file San - ĐƠN GIẢN HƠN
     static bool ghiSan(const string &filename, const MyVector<shared_ptr<SanCauLong>> &danhSach)
     {
         ofstream file(filename);
@@ -130,9 +126,6 @@ public:
         cout << "Da ghi " << danhSach.get_size() << " san vao file " << filename << endl;
         return true;
     }
-
-    // Ghi file DichVu
-    // Ghi file DichVu - PHIÊN BẢN GỌN (Bỏ Info 1)
     static bool ghiDichVu(const string &filename, const MyVector<shared_ptr<DichVu>> &danhSach)
     {
         ofstream file(filename);
@@ -143,8 +136,6 @@ public:
         {
             const auto &dv = danhSach[i];
             string loaiDV = dv->getLoaiDV();
-
-            // Ghi các thông tin chung
             file << loaiDV << ","
                  << dv->getId() << ","
                  << dv->getTenDV() << ","
@@ -152,14 +143,9 @@ public:
                  << dv->getDonViTinh() << ","
                  << dv->getSoLuongTon();
 
-            // Tự động tính trạng thái (Info 2)
             string trangThai = (dv->getSoLuongTon() > 0) ? "Con hang" : "Het hang";
-
-            // CHỈ GHI TRẠNG THÁI (Bỏ qua Info 1)
             if (loaiDV == "AnUong")
             {
-                // Format cũ: loaiAmThuc, trangThai
-                // Format mới: trangThai
                 file << "," << trangThai;
             }
             else if (loaiDV == "ThietBi")
@@ -167,9 +153,6 @@ public:
                 DichVuThietBi *dvTB = dynamic_cast<DichVuThietBi *>(dv.get());
                 if (dvTB)
                 {
-                    // Format cũ: tinhTrang, thoiGian
-                    // Format mới: thoiGian (Hoặc dùng luôn biến trangThai nếu muốn đồng bộ)
-                    // Ở đây tôi dùng luôn trangThai để đồng bộ với Ăn Uống cho đẹp file
                     file << "," << trangThai;
                 }
             }
@@ -178,8 +161,6 @@ public:
         file.close();
         return true;
     }
-
-    // Ghi file DatSan
     static bool ghiDatSan(const string &filename, const MyVector<DatSan> &danhSach)
     {
         ofstream file(filename);
@@ -192,7 +173,6 @@ public:
         for (size_t i = 0; i < danhSach.get_size(); i++)
         {
             const DatSan &ds = danhSach[i];
-            // Ghi trực tiếp ID
             file << ds.getIdDatSan() << ","
                  << ds.getIdSan() << ","
                  << ds.getIdKhachHang() << ","
@@ -205,8 +185,6 @@ public:
         cout << "Da ghi " << danhSach.get_size() << " dat san vao file " << filename << endl;
         return true;
     }
-
-    // Ghi file HoaDon
     static bool ghiHoaDon(const string &filename, const MyVector<HoaDon> &danhSach)
     {
         ofstream file(filename);
@@ -219,7 +197,6 @@ public:
         for (size_t i = 0; i < danhSach.get_size(); i++)
         {
             const HoaDon &hd = danhSach[i];
-            // Ghi trực tiếp ID
             file << hd.getIdHoaDon() << ","
                  << hd.getIdKhachHang() << ","
                  << hd.getIdNhanVien() << ","
