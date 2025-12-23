@@ -35,7 +35,7 @@ private:
     AuthenticationService authService;
     User *currentUser = nullptr;
 
-    // Data
+    // du lieu
     MyVector<KhachHang> danhSachKhachHang;
     MyVector<NhanVien> danhSachNhanVien;
     MyVector<shared_ptr<SanCauLong>> danhSachSan;
@@ -44,7 +44,7 @@ private:
     MyVector<HoaDon> danhSachHoaDon;
     QuanLyChiTietHoaDon quanLyChiTietHoaDon;
 
-    // Services
+    // nghiep vu
     std::unique_ptr<QuanLyNhanVienService> nhanVienService;
     std::unique_ptr<QuanLyKhachHangService> khachHangService;
     std::unique_ptr<QuanLySanService> sanService;
@@ -52,14 +52,14 @@ private:
     std::unique_ptr<QuanLyDatSanService> datSanService;
     std::unique_ptr<QuanLyHoaDonService> hoaDonService;
 
-    // UI State
+    // trang thai
     bool isLoggedIn = false;
     bool shouldExitApp = false;
     int app_state_selector = 0;
     std::string loginUsername = "", loginPassword = "", loginError = "";
     std::string statusMessage = "";
 
-    // Menu Selection
+    // lua chon menu
     int adminMenuSelected = 0;
     int staffMenuSelected = 0;
     int customerMenuSelected = 0;
