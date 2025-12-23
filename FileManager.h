@@ -9,7 +9,7 @@
 class FileManager
 {
 public:
-    // Hàm tải tất cả dữ liệu (được gọi từ UIManager)
+    // Hàm tải tất cả dữ liệu
     static void loadAllData(
         MyVector<KhachHang> &kh,
         MyVector<NhanVien> &nv,
@@ -28,7 +28,7 @@ public:
         hd = FileReader::docHoaDon("hoadon.txt", kh, nv, ds, qlct);
     }
 
-    // Hàm lưu tất cả dữ liệu (được gọi từ UIManager)
+    // Hàm lưu tất cả dữ liệu
     static void saveAllData(
         const MyVector<KhachHang> &kh,
         const MyVector<NhanVien> &nv,
