@@ -1,0 +1,3 @@
+NV001,Nguyen Van A,0901234567,nva@san.com,Quan Ly,1.5e+07,Fulltime
+NV002,Tran Thi B,0901234568,ttb@san.com,Thu Ngan,8e+06,Ca Sang
+NV003,Nguyen Van Q,0935123456,Q@gmail.com,Bao Ve,5e+06,Ca Chieu

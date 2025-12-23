@@ -1,0 +1,10 @@
+{
+	"InstallScripts" : 
+	[
+		"/Users/mac/tintapcode/baocaopbl2/build/cmake_install.cmake",
+		"/Users/mac/tintapcode/baocaopbl2/build/_deps/ftxui-build/cmake_install.cmake",
+		"/Users/mac/tintapcode/baocaopbl2/build/_deps/ftxui-build/examples/cmake_install.cmake",
+		"/Users/mac/tintapcode/baocaopbl2/build/_deps/ftxui-build/doc/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

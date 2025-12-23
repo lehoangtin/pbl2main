@@ -1,0 +1,6 @@
+NgoaiTroi,S001,Hoat dong,Khu A gan cong,100
+NgoaiTroi,S002,Bao tri,Khu B san vuon,120
+TrongNha,S003,Hoat dong,May lanh Panasonic,150,Den LED chong loa
+TrongNha,S004,Hoat dong,Quat cong nghiep,150,Den Thuong
+VIP,S005,Hoat dong,Nuoc uong + Khan lanh,Tham cao su Yonex,200,Loa Bose
+VIP,S006,Hoat dong,Massage chan,Go cao cap,200,Hifi Sony

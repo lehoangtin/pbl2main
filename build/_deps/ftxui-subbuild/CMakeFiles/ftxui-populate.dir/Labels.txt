@@ -1,0 +1,14 @@
+# Target labels
+ ftxui-populate
+# Source files and their labels
+/Users/mac/tintapcode/baocaopbl2/build/_deps/ftxui-subbuild/CMakeFiles/ftxui-populate
+/Users/mac/tintapcode/baocaopbl2/build/_deps/ftxui-subbuild/CMakeFiles/ftxui-populate.rule
+/Users/mac/tintapcode/baocaopbl2/build/_deps/ftxui-subbuild/CMakeFiles/ftxui-populate-complete.rule
+/Users/mac/tintapcode/baocaopbl2/build/_deps/ftxui-subbuild/ftxui-populate-prefix/src/ftxui-populate-stamp/ftxui-populate-build.rule
+/Users/mac/tintapcode/baocaopbl2/build/_deps/ftxui-subbuild/ftxui-populate-prefix/src/ftxui-populate-stamp/ftxui-populate-configure.rule
+/Users/mac/tintapcode/baocaopbl2/build/_deps/ftxui-subbuild/ftxui-populate-prefix/src/ftxui-populate-stamp/ftxui-populate-download.rule
+/Users/mac/tintapcode/baocaopbl2/build/_deps/ftxui-subbuild/ftxui-populate-prefix/src/ftxui-populate-stamp/ftxui-populate-install.rule
+/Users/mac/tintapcode/baocaopbl2/build/_deps/ftxui-subbuild/ftxui-populate-prefix/src/ftxui-populate-stamp/ftxui-populate-mkdir.rule
+/Users/mac/tintapcode/baocaopbl2/build/_deps/ftxui-subbuild/ftxui-populate-prefix/src/ftxui-populate-stamp/ftxui-populate-patch.rule
+/Users/mac/tintapcode/baocaopbl2/build/_deps/ftxui-subbuild/ftxui-populate-prefix/src/ftxui-populate-stamp/ftxui-populate-test.rule
+/Users/mac/tintapcode/baocaopbl2/build/_deps/ftxui-subbuild/ftxui-populate-prefix/src/ftxui-populate-stamp/ftxui-populate-update.rule
