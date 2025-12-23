@@ -378,7 +378,6 @@ ftxui::Component UIManager::createKhachHangDashboard()
         if(datSanService->huyDatSan(delete_id)) { statusMessage = "✅ Đã hủy: " + delete_id; saveData(); delete_id = ""; } 
         else statusMessage = "❌ Lỗi hệ thống!"; });
 
-    // Container cho Tab Đặt Sân
     auto container_dat = ftxui::Container::Vertical({in_id, btn_gen_id, in_san, in_ngay, in_bd, in_kt, btn_book, in_del, btn_cancel});
 
     auto dat_san_comp = ftxui::Renderer(container_dat, [=]
@@ -388,7 +387,6 @@ ftxui::Component UIManager::createKhachHangDashboard()
 
         auto form = ftxui::vbox({
             ftxui::text("--- Đặt Sân Mới ---") | ftxui::bold,
-            // Dòng ID: Có thêm nút lấy mã
             ftxui::hbox({ input_label("Mã DS:", 10), in_id->Render() | input_w | ftxui::border, btn_gen_id->Render() }),
             ftxui::hbox({ input_label("Mã Sân:", 10), in_san->Render() | input_w | ftxui::border, ftxui::text(" (Ví dụ: S001)") | ftxui::color(ftxui::Color::GrayDark) }),
             ftxui::hbox({ input_label("Của KH:", 10), ftxui::text(real_id) | ftxui::bold | ftxui::color(ftxui::Color::Green) | ftxui::center }),
@@ -550,7 +548,6 @@ ftxui::Component UIManager::createNhanVienManager()
 {
     auto style = StyleInputDep();
 
-    // Input
     auto input_id = ftxui::Input(&nv_id, "NVxxx", style);
     auto input_ten = ftxui::Input(&nv_ten, "Họ tên", style);
     auto input_sdt = ftxui::Input(&nv_sdt, "SĐT", style);
@@ -561,8 +558,6 @@ ftxui::Component UIManager::createNhanVienManager()
 
     auto input_del_id = ftxui::Input(&delete_id, "ID xử lý", style);
     auto input_tim_id = ftxui::Input(&nv_tim_id, "ID tìm kiếm", style);
-
-    // --- BUTTONS ---
 
     auto btn_load = ftxui::Button("⬆️ Tải", [=]
                                   {
@@ -612,8 +607,14 @@ ftxui::Component UIManager::createNhanVienManager()
 
     auto btn_del = ftxui::Button("❌ Xóa", [=]
                                  {
-        if(nhanVienService->xoaNhanVien(delete_id)) { statusMessage = "✅ Đã xóa " + delete_id; saveData(); delete_id = ""; } 
-        else statusMessage = "❌ Không tìm thấy!"; });
+    if(nhanVienService->xoaNhanVien(delete_id)) {
+        authService.xoaUser(delete_id);           
+        authService.ghiUserVaoFile("user.txt");          
+        statusMessage = "✅ Đã xóa " + delete_id; 
+        saveData(); 
+        delete_id = ""; 
+    } 
+    else statusMessage = "❌ Không tìm thấy!"; });
 
     auto btn_tim = ftxui::Button("🔍 Tìm", [=]
                                  {
@@ -622,7 +623,6 @@ ftxui::Component UIManager::createNhanVienManager()
     auto btn_toggle = ftxui::Button("➕ Form", [=]
                                     { show_nv_input = !show_nv_input; });
 
-    // LAYOUT
     auto container = ftxui::Container::Vertical({input_id, input_ten, input_sdt, input_email, input_luong, input_chucvu, input_ca, input_del_id, input_tim_id, btn_add, btn_edit, btn_load, btn_del, btn_tim, btn_toggle});
 
     return ftxui::Renderer(container, [=]
@@ -656,7 +656,6 @@ ftxui::Component UIManager::createNhanVienManager()
 
         auto input_w = ftxui::size(ftxui::WIDTH, ftxui::EQUAL, 15);
         
-        // Phần Form Nhập Liệu
         auto form = show_nv_input ? ftxui::vbox({
             ftxui::text("Thông Tin Nhân Viên") | ftxui::bold,
             ftxui::hbox({ input_label("ID:", 5), input_id->Render() | input_w | ftxui::border, btn_load->Render(), ftxui::text(" "), input_label("Tên:", 5), input_ten->Render() | input_w | ftxui::border }),
@@ -665,11 +664,9 @@ ftxui::Component UIManager::createNhanVienManager()
             ftxui::hbox({ btn_add->Render(), ftxui::text("  "), btn_edit->Render() }) | ftxui::center
         }) | ftxui::border : ftxui::text("");
 
-        // Phần Công cụ Admin (Xóa + Form Toggle)
         ftxui::Element admin_tools = ftxui::text("");
         if (currentUser->isAdmin()) {
             admin_tools = ftxui::vbox({
-                // Dòng 1: Nút Form bên trái, Xóa bên phải
                 ftxui::hbox({ 
                     btn_toggle->Render(), 
                     ftxui::filler(), 
@@ -677,7 +674,6 @@ ftxui::Component UIManager::createNhanVienManager()
                     input_del_id->Render() | ftxui::size(ftxui::WIDTH, ftxui::EQUAL, 10) | ftxui::border, 
                     btn_del->Render() 
                 }) | ftxui::border,
-                // Dòng 2: Form nhập liệu (nếu mở)
                 form
             });
         }
@@ -686,7 +682,6 @@ ftxui::Component UIManager::createNhanVienManager()
             createHeader("QUẢN LÝ NHÂN VIÊN"),
             ftxui::text(statusMessage) | ftxui::color(ftxui::Color::Yellow) | ftxui::center, 
             ftxui::separator(),
-            // Khung Tìm kiếm
             ftxui::hbox({ 
                 ftxui::text("🔍 Tìm ID: "), 
                 input_tim_id->Render() | input_w | ftxui::border, 
@@ -694,7 +689,7 @@ ftxui::Component UIManager::createNhanVienManager()
                 ftxui::filler() 
             }) | ftxui::border,
             
-            admin_tools, // Chỉ còn khung công cụ + form, ĐÃ BỎ THỐNG KÊ
+            admin_tools, 
             
             createTable(data) | ftxui::vscroll_indicator | ftxui::frame | ftxui::flex
         }); });
@@ -751,8 +746,14 @@ ftxui::Component UIManager::createKhachHangManager()
 
     auto btn_del = ftxui::Button("❌ Xóa", [=]
                                  {
-        if(khachHangService->xoaKhachHang(delete_id)) { statusMessage = "✅ Đã xóa " + delete_id; saveData(); delete_id=""; } 
-        else statusMessage = "❌ Không tìm thấy!"; });
+    if(khachHangService->xoaKhachHang(delete_id)) { 
+        authService.xoaUser(delete_id);
+        authService.ghiUserVaoFile("user.txt");
+        statusMessage = "✅ Đã xóa " + delete_id; 
+        saveData(); 
+        delete_id=""; 
+    } 
+    else statusMessage = "❌ Không tìm thấy!"; });
 
     auto btn_tim = ftxui::Button("🔍 Tìm", [=]
                                  { if(khachHangService->timKiemKhachHang(kh_tim_id)) statusMessage="✅ Tìm thấy!"; else statusMessage="❌ Không thấy!"; });
@@ -847,8 +848,6 @@ ftxui::Component UIManager::createSanManager()
         if(san_id.empty()) { statusMessage="❌ Thiếu ID!"; return; }
         try {
             shared_ptr<SanCauLong> s = nullptr;
-            
-            // FIX LỖI: Chuyển đổi số đúng chỗ
             if(san_loai_idx==0) { // Ngoài trời
                 double dt = std::stod(san_info2); 
                 s=make_shared<SanNgoaiTroi>(san_id, "Hoat dong", san_info1, dt);
@@ -858,7 +857,6 @@ ftxui::Component UIManager::createSanManager()
                 s=make_shared<SanTrongNha>(san_id, "Hoat dong", san_info1, dt, san_info3);
             }
             else { // VIP
-                // Ở VIP: info2 là Chất liệu (Chữ), info3 là Diện tích (Số)
                 double dt = std::stod(san_info3); 
                 s=make_shared<SanVIP>(san_id, "Hoat dong", san_info1, san_info2, dt, san_info4);
             }
@@ -1058,14 +1056,12 @@ ftxui::Component UIManager::createDichVuManager()
 // 5. đặt sân
 ftxui::Component UIManager::createDatSanManager()
 {
-    // --- 1. Thêm Logic Tự Động Sinh Mã ---
     auto auto_gen_id = [this]()
     {
         int max_id = 0;
         for (size_t i = 0; i < danhSachDatSan.get_size(); i++)
         {
             std::string s = danhSachDatSan[i].getIdDatSan();
-            // Chỉ lấy số từ các mã bắt đầu bằng "DS"
             if (s.length() > 2 && s.substr(0, 2) == "DS")
             {
                 try
